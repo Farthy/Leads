@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  activeDir: 'rtl',
-  activeMode: 'light', // This can be light or dark
-  activeTheme: 'BLUE_THEME', // BLUE_THEME, GREEN_THEME, BLACK_THEME, PURPLE_THEME, ORANGE_THEME
+  activeDir: 'ltr',
+  activeMode: 'light',
+  activeTheme: 'BLUE_THEME',
   SidebarWidth: 270,
   MiniSidebarWidth: 87,
   TopbarHeight: 70,
-  isLayout: 'boxed', // This can be full or boxed
-  isCollapse: false, // to make sidebar Mini by default
+  isLayout: 'boxed',
+  isCollapse: true,
   isSidebarHover: false,
   isMobileSidebar: false,
   isHorizontal: false,

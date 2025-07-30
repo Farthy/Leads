@@ -27,7 +27,6 @@ export const createUser = createAsyncThunk(
           email,
           mobile_number: mobile_no,
         },
-        // { headers: getAuthHeaders() },
       );
 
       dispatch(fetchUsers(baseUrl));
