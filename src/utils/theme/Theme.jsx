@@ -13,10 +13,12 @@ import * as locales from '@mui/material/locale';
 export const BuildTheme = (config) => {
   const themeOptions = LightThemeColors.find((theme) => theme.name === config.theme);
   const darkthemeOptions = DarkThemeColors.find((theme) => theme.name === config.theme);
+
   const customizer = useSelector((state) => state.customizer);
   const defaultTheme = customizer.activeMode === 'dark' ? baseDarkTheme : baselightTheme;
   const defaultShadow = customizer.activeMode === 'dark' ? darkshadows : shadows;
   const themeSelect = customizer.activeMode === 'dark' ? darkthemeOptions : themeOptions;
+
   const baseMode = {
     palette: {
       mode: customizer.activeMode,
@@ -27,11 +29,13 @@ export const BuildTheme = (config) => {
     shadows: defaultShadow,
     typography: typography,
   };
+
   const theme = createTheme(
     _.merge({}, baseMode, defaultTheme, locales, themeSelect, {
       direction: config.direction,
     }),
   );
+
   theme.components = components(theme);
 
   return theme;
@@ -40,16 +44,18 @@ export const BuildTheme = (config) => {
 const ThemeSettings = () => {
   const activDir = useSelector((state) => state.customizer.activeDir);
   const activeTheme = useSelector((state) => state.customizer.activeTheme);
+
   const theme = BuildTheme({
     direction: activDir,
     theme: activeTheme,
   });
+
   useEffect(() => {
-    document.dir = activDir;
+    // ✅ Update the actual <html> tag for correct initial rendering
+    document.documentElement.setAttribute('dir', activDir);
   }, [activDir]);
 
   return theme;
 };
-
 
 export { ThemeSettings };

@@ -1,18 +1,17 @@
-
-import React from "react";
-import { Providers } from "@/store/providers";
+import React from 'react';
+import { Providers } from '@/store/providers';
 import MyApp from './app';
-import "./global.css";
+import './global.css';
 import { Toaster } from 'react-hot-toast';
 
 export const metadata = {
   title: 'Kejapay CRM',
   description: 'Kejapay CRM',
-}
+};
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" dir="ltr" suppressHydrationWarning>
       <body>
         <Toaster
           toastOptions={{
@@ -29,5 +28,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-
