@@ -74,7 +74,7 @@ export const deleteUser = createAsyncThunk(
     try {
       const response = await axios.post(
         `${baseUrl}/api/method/kejapaycrm.services.user.delete_user`,
-        { email:  name },
+        { email: name },
         // { headers: getAuthHeaders() },
       );
 
@@ -90,7 +90,6 @@ export const deleteUser = createAsyncThunk(
     }
   },
 );
-// ##########################################
 export const ForgotPassword = createAsyncThunk(
   'user/ForgotPassword',
   async ({ baseUrl, mobile_number }, { rejectWithValue }) => {
