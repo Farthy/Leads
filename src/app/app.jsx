@@ -13,16 +13,22 @@ const MyApp = ({ children }) => {
   const customizer = useSelector((state) => state.customizer);
 
   return (
-    <>
-      <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-        <ThemeProvider theme={theme}>
-          <RTL direction={customizer.activeDir}>
+    <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+      <ThemeProvider theme={theme}>
+        {/* ✅ Only apply RTL wrapper if Redux says rtl */}
+        {customizer.activeDir === 'rtl' ? (
+          <RTL direction="rtl">
             <CssBaseline />
             {children}
           </RTL>
-        </ThemeProvider>
-      </AppRouterCacheProvider>
-    </>
+        ) : (
+          <>
+            <CssBaseline />
+            {children}
+          </>
+        )}
+      </ThemeProvider>
+    </AppRouterCacheProvider>
   );
 };
 

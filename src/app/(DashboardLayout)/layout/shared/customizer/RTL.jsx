@@ -1,32 +1,26 @@
 import React, { useEffect } from 'react';
-
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import rtlPlugin from 'stylis-plugin-rtl';
 
-
-const styleCache = () =>
-  createCache({
-    key: 'rtl',
-    prepend: true,
-
-    // We have to temporary ignore this due to incorrect definitions
-    // in the stylis-plugin-rtl module
-    // @see https://github.com/styled-components/stylis-plugin-rtl/issues/23
-    stylisPlugins: [rtlPlugin],
-  });
-
-const RTL = (props) => {
-  const { children, direction } = props;
-
+const RTL = ({ children, direction }) => {
   useEffect(() => {
-    document.dir = direction;
+    // ✅ Update the <html> tag directly instead of just document.dir
+    document.documentElement.setAttribute('dir', direction);
   }, [direction]);
 
   if (direction === 'rtl') {
-    return <CacheProvider value={styleCache()}>{children}</CacheProvider>;
+    // ✅ Only create the cache when RTL is actually needed
+    const rtlCache = createCache({
+      key: 'mui-rtl',
+      prepend: true,
+      stylisPlugins: [rtlPlugin],
+    });
+
+    return <CacheProvider value={rtlCache}>{children}</CacheProvider>;
   }
 
+  // ✅ For LTR, just render normally — no RTL cache
   return <>{children}</>;
 };
 
