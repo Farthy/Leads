@@ -6,11 +6,9 @@ export const fetchLeads = createAsyncThunk(
   'leads/fetchLeads',
   async (baseUrl, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${baseUrl}/api/method/kejapaycrm.services.rest.fetch_all_leads`,
-      //    {
-      //   headers: getAuthHeaders(),
-      // }
-    );
+      const response = await axios.get(
+        `${baseUrl}/api/method/kejapaycrm.services.rest.fetch_all_leads`,
+      );
       return response.data.message;
     } catch (error) {
       return rejectWithValue(error.message || 'Failed to fetch leads');

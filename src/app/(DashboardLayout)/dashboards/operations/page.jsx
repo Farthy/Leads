@@ -94,8 +94,7 @@ const MarketingPage = () => {
   const handleLeadFilterChange = (e) => {
     const value = e.target.value;
     setLeadFilter(value);
-    
-    // Automatically open dialog when specific leads is selected
+
     if (value === 'specific') {
       setSpecificLeadsDialogOpen(true);
     }
