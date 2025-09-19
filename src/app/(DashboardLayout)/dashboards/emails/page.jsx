@@ -20,7 +20,6 @@ const EmailPage = () => {
   const [filterText, setFilterText] = useState('');
   const emailsPerPage = 20;
 
-  // ✅ Wave loading animation
   const WaveLoading = () => (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 100 }}>
       <motion.div style={{ display: 'flex', gap: 8 }}>
